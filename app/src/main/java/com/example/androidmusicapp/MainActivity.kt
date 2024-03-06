@@ -40,19 +40,3 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
-
-// #STEPS FOLLOWED
-
-// 1. Add dependencies - retrofit and converter-gson
-// 2. Create Data Class
-// 3. Create API Interface
-// 4. Get Data in MainActivity (Retrofit builder and enqueue method)
-// 5. Populate data in view the way you want
-
-// RecyclerView - You need a ListView (list of data) or RecyclerView when scrolling a screen
-
-// STEPS FOLLOWED
-
-// 1. Create an adapter
-// 2. LMR Recyclerview with Adapter
-
