@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        myRecyclerView = findViewById(R.id.recyclerView)
+
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl("https://deezerdevs-deezer.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -32,9 +35,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<MyData?>, response: Response<MyData?>) {
                 // If the API call is a success then this method is executed
-                val dataList = response.body()?.data
-                val textView = findViewById<TextView>(R.id.helloText)
-                textView.text = dataList.toString()
+                val dataList = response.body()?.data !!
+
+//                val textView = findViewById<TextView>(R.id.helloText)
+//                textView.text = dataList.toString()
+
+                myAdapter = MyAdapter(this@MainActivity, dataList)
+                myRecyclerView.adapter = myAdapter
+                myRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+
                 Log.d("TAG: onResponse", "onResponse: "+ response.body())
             }
 
