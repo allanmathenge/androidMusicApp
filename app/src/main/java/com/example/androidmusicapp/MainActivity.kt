@@ -3,7 +3,6 @@ package com.example.androidmusicapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
@@ -36,9 +35,6 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<MyData?>, response: Response<MyData?>) {
                 // If the API call is a success then this method is executed
                 val dataList = response.body()?.data !!
-
-//                val textView = findViewById<TextView>(R.id.helloText)
-//                textView.text = dataList.toString()
 
                 myAdapter = MyAdapter(this@MainActivity, dataList)
                 myRecyclerView.adapter = myAdapter
